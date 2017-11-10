@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import * as _ from 'lodash';
 import { ConsentService } from '../core/services/consent.service';
+import { validationEmailPattern } from '../shared/config';
 
 @Component({
     selector: 'didomi-give-consent',
@@ -11,7 +12,7 @@ import { ConsentService } from '../core/services/consent.service';
 })
 export class GiveConsentComponent implements OnInit {
     public consentForm: FormGroup;
-    private validationEmailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    private validationEmailPattern = validationEmailPattern;
 
     constructor(private fb: FormBuilder,
                 private consentService: ConsentService) { }
