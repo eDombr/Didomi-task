@@ -1,3 +1,39 @@
-<p>
-  give-consent works!
-</p>
+<form [formGroup]="consentForm" (ngSubmit)="submitConsentForm()">
+    <div class="form-control">
+        <mat-form-field class="example-full-width">
+            <input class="form-control" matInput type="text" placeholder="Name" formControlName="name">
+        </mat-form-field>
+    </div>
+    <div class="alert alert-danger" *ngIf="consentForm.get('name').hasError('required') && consentForm.get('name').touched">
+        Name is required
+    </div>
+    <div class="form-control">
+        <mat-form-field class="example-full-width">
+            <input class="form-control" matInput type="text" placeholder="Email address" formControlName="email">
+        </mat-form-field>
+    </div>
+    <div class="alert alert-danger" *ngIf="consentForm.get('email').hasError('required') && consentForm.get('email').touched">
+        Email is required
+    </div>
+    <div class="alert alert-danger" *ngIf="consentForm.get('email').hasError('pattern') && consentForm.get('email').touched">
+        Incorrect email
+    </div>
+    <div class="form-group" formGroupName="actions">
+        <div class="agree-title">I agree to:</div>
+        <div class="checkbox-wrap">
+            <label class="checkbox-label">
+                <mat-checkbox class="checkbox" formControlName="newsletter"></mat-checkbox>
+                Receive newsletter
+            </label>
+            <label class="checkbox-label">
+                <mat-checkbox class="checkbox" formControlName="ads"></mat-checkbox>
+                Be shown targeted ads
+            </label>
+            <label class="checkbox-label">
+                <mat-checkbox class="checkbox" formControlName="anonymus"></mat-checkbox>
+                Contribute to anonymous visit statistics
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="give-consent-btn" mat-raised-button [disabled]="!consentForm.valid">Give consent</button>
+</form>

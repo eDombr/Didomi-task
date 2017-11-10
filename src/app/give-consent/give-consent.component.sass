@@ -1,0 +1,39 @@
+form
+    .new-consent 
+        margin-bottom: 20px
+
+    .checkbox-wrap
+        display: flex
+        flex-direction: column
+
+        .checkbox-label
+            margin-bottom: 5px
+            cursor: pointer
+
+        mat-checkbox 
+            position: relative
+            top: -1px
+            padding-right: 10px
+
+    .agree-title 
+        padding-left: 15px
+        display: block
+        width: 100%
+        border-bottom: 1px solid #eee
+        margin-bottom: 15px
+        padding-bottom: 5px
+
+    .give-consent-btn 
+        cursor: pointer
+        margin-top: 20px
+        &:disabled 
+            cursor: not-allowed
+
+    .alert
+        padding: 10px 0
+        background-color: #f98c87
+        padding-left: 10px
+        color: #fff
+        border-radius: 3px
+        margin-bottom: 20px
+        margin-top: -10px
