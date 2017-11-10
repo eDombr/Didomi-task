@@ -20,5 +20,4 @@ export class ConsentService {
         return this.http.post(`${this.apiUrl}/consent`, body)
             .map((response: Response) => response.json());
     }
-
 }

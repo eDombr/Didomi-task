@@ -5,12 +5,9 @@ import {
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatMenuModule,
     MatTableModule,
-    MatToolbarModule,
     MatPaginatorModule
 } from '@angular/material';
-// import { SimpleNotificationsModule } from 'angular2-notifications';
 
 const modules: Array<any> = [
     CommonModule,
@@ -19,11 +16,8 @@ const modules: Array<any> = [
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatMenuModule,
     MatTableModule,
-    MatToolbarModule,
-    MatPaginatorModule,
-    // SimpleNotificationsModule.forRoot()
+    MatPaginatorModule
 ];
 
 

@@ -47,7 +47,7 @@ export class GiveConsentComponent implements OnInit {
                     }
                 },
                 err => {
-                    const errorMessageFromApi = err ? err.json() : 'Server error';
+                    const errorMessageFromApi = err ? err.json().message : 'Server error';
                     this.notificationService.error('Error', errorMessageFromApi);
                 }
             );

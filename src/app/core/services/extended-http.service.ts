@@ -22,8 +22,8 @@ export class ExtendedHttpService extends Http {
     public post<T>(url: string, body, options?: any): Observable<T> {
         const consent = JSON.parse(body);
 
-        if (!(consent && typeof consent === 'object')) {
-            return Observable.throw('Error');
+        if (!consent) {
+            return Observable.throw({ messge: 'Error' });
         }
 
         if (Array.isArray(consent)) {

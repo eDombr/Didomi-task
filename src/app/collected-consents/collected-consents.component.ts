@@ -28,8 +28,8 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit {
                     this.dataSource = new MatTableDataSource<Consent>(consents);
                 },
                 err => {
-                    const errorMessageFromApi = err ? err.json() : 'Server error';
-                    this.notificationService.error('Error', errorMessageFromApi);
+                    const errorMessage = err ? err.json().message : 'Server error';
+                    this.notificationService.error('Error', errorMessage);
                 }
             );
     }
