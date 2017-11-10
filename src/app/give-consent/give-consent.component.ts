@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 import * as _ from 'lodash';
 import { ConsentService } from '../core/services/consent.service';
-import { validationEmailPattern } from '../shared/config';
+import { validationEmailPattern } from '../shared/config/app.conf';
 
 @Component({
     selector: 'didomi-give-consent',
@@ -15,7 +16,8 @@ export class GiveConsentComponent implements OnInit {
     private validationEmailPattern = validationEmailPattern;
 
     constructor(private fb: FormBuilder,
-                private consentService: ConsentService) { }
+                private consentService: ConsentService,
+                private notificationService: NotificationsService) { }
 
     public ngOnInit(): void {
         this.initConsentForm();
@@ -26,11 +28,11 @@ export class GiveConsentComponent implements OnInit {
             'name': ['', Validators.required],
             'email': ['', [ Validators.required,
                             Validators.pattern(this.validationEmailPattern)]],
-            'actions': this.fb.group({
-                'newsletter': false,
-                'ads': false,
-                'anonymus': false
-            }, { validator: this.actionsRequired })
+            'checks': this.fb.group({
+                'firstCheck': false,
+                'secondCheck': false,
+                'thirdCheck': false
+            }, { validator: this.checkboxValidator })
         });
     }
 
@@ -40,18 +42,18 @@ export class GiveConsentComponent implements OnInit {
             .subscribe(
                 data => {
                     if (Array.isArray(data)) {
-                        // this._alertService.alertNotificationSuccess('Consent was created!');
+                        this.notificationService.success('Succes', 'Consent has been added');
                         this.consentForm.reset();
                     }
                 },
                 err => {
                     const errorMessageFromApi = err ? err.json() : 'Server error';
-                    // this._alertService.alertNotification(errorMessageFromApi);
+                    this.notificationService.error('Error', errorMessageFromApi);
                 }
             );
     }
 
-    public actionsRequired(controlGroup: FormGroup): { [key: string]: any } {
+    public checkboxValidator(controlGroup: FormGroup): { [key: string]: any } {
         const controlIsChecked = _.some(controlGroup.controls, { value: true });
         return controlIsChecked ? null : { 'unchecked': true };
     }

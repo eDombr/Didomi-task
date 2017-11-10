@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -22,7 +23,8 @@ const modules = [
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    SimpleNotificationsModule.forRoot()
 ];
 
 @NgModule({
