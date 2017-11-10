@@ -8,6 +8,7 @@ import {
     MatMenuModule,
     MatTableModule,
     MatToolbarModule,
+    MatPaginatorModule
 } from '@angular/material';
 
 const modules: Array<any> = [
@@ -20,6 +21,7 @@ const modules: Array<any> = [
     MatMenuModule,
     MatTableModule,
     MatToolbarModule,
+    MatPaginatorModule
 ];
 
 

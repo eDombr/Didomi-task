@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import * as _ from 'lodash';
 
 import { ConsentService } from '../core/services/consent.service';
 import { Consent } from './../shared/interfaces/consent.interface';
 import { consentChecks } from './../shared/config';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
     selector: 'didomi-collected-consents',
     templateUrl: './collected-consents.component.html',
     styleUrls: ['./collected-consents.component.sass']
 })
-export class CollectedConsentsComponent implements OnInit {
-    public consents: Consent[];
+export class CollectedConsentsComponent implements OnInit, AfterViewInit {
     public dataSource: MatTableDataSource<Consent>;
     public displayedColumns = ['name', 'email', 'checks'];
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private consentService: ConsentService) { }
 
@@ -23,11 +23,14 @@ export class CollectedConsentsComponent implements OnInit {
         this.consentService.getConsents()
             .subscribe(
                 consents => {
-                    this.consents = consents;
                     this.dataSource = new MatTableDataSource<Consent>(consents);
-                    console.log(this.dataSource);
                 }
             );
+    }
+
+    ngAfterViewInit() {
+        console.log(this.paginator, this.dataSource);
+        this.dataSource.paginator = this.paginator;
     }
 
     public filterChecks(checks) {

@@ -10,15 +10,18 @@
             <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
         </ng-container>
-    
+
         <ng-container matColumnDef="checks">
             <mat-header-cell *matHeaderCellDef> Consent given for </mat-header-cell>
-            <mat-cell *matCellDef="let element"> 
+            <mat-cell *matCellDef="let element">
                 <div class="check-name" *ngFor="let item of filterChecks(element.checks)"> {{item}} </div>
             </mat-cell>
         </ng-container>
-    
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+
+    <mat-paginator #paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 8, 10]">
+    </mat-paginator>
 </div>
