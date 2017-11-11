@@ -3,6 +3,7 @@ import { SharedModule } from './../shared/shared.module';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs/Observable';
+import { By } from '@angular/platform-browser';
 
 import { GiveConsentComponent } from './give-consent.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ describe('GiveConsentComponent', () => {
     let component: GiveConsentComponent;
     let fixture: ComponentFixture<GiveConsentComponent>;
     let consentService: ConsentService;
+    let notificationService: NotificationsService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -36,6 +38,7 @@ describe('GiveConsentComponent', () => {
         fixture = TestBed.createComponent(GiveConsentComponent);
         component = fixture.componentInstance;
         consentService = fixture.debugElement.injector.get(ConsentService);
+        notificationService = fixture.debugElement.injector.get(NotificationsService);
         fixture.detectChanges();
     });
 
@@ -43,7 +46,7 @@ describe('GiveConsentComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should call giveConsent method', fakeAsync(() => {
+    it('should call giveConsent method and notification', fakeAsync(() => {
         const formData = {
             name: 'john',
             email: 'john@gmail.com',
@@ -55,13 +58,62 @@ describe('GiveConsentComponent', () => {
         };
 
         const spyGiveConsent = spyOn(consentService, 'giveConsent').and.returnValue(Observable.of(formData));
+        const spyNotificationSucces = spyOn(notificationService, 'success');
 
         component.consentForm.setValue(formData);
         component.submitConsentForm();
         tick();
         fixture.detectChanges();
         expect(spyGiveConsent).toHaveBeenCalled();
+        expect(spyNotificationSucces).toHaveBeenCalled();
     }));
+
+    it('should throw error and call notifiction', fakeAsync(() => {
+        const spyGiveConsent = spyOn(consentService, 'giveConsent').and.returnValue(Observable.throw({message: 'Server Error'}));
+        const spyNotificationError = spyOn(notificationService, 'error');
+
+        component.submitConsentForm();
+        tick();
+        fixture.detectChanges();
+        expect(spyGiveConsent).toHaveBeenCalled();
+        expect(spyNotificationError).toHaveBeenCalled();
+    }));
+
+    it('should disable submit button', () => {
+        const formData = {
+            name: 'john',
+            email: 'john@gmail.com',
+            checks: {
+                firstCheck: false,
+                secondCheck: false,
+                thirdCheck: false
+            }
+        };
+
+        component.consentForm.setValue(formData);
+        fixture.detectChanges();
+
+        const btn = fixture.debugElement.query(By.css('.give-consent-btn'));
+        expect(btn.properties.disabled).toBeTruthy('disabel property should be true');
+    });
+
+    it('should enable submit button', () => {
+        const formData = {
+            name: 'john',
+            email: 'john@gmail.com',
+            checks: {
+                firstCheck: false,
+                secondCheck: true,
+                thirdCheck: false
+            }
+        };
+
+        component.consentForm.setValue(formData);
+        fixture.detectChanges();
+
+        const btn = fixture.debugElement.query(By.css('.give-consent-btn'));
+        expect(btn.properties.disabled).toBeFalsy('disabel property should be false');
+    });
 });
 
 

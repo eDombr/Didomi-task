@@ -44,10 +44,10 @@ export class GiveConsentComponent implements OnInit {
                 data => {
                     this.notificationService.success('Succes', 'Consent has been added');
                     ConsentActions.addConsents(data);
+                    this.consentForm.reset();
                 },
                 err => {
-                    const errorMessageFromApi = err ? err.json().message : 'Server error';
-                    this.notificationService.error('Error', errorMessageFromApi);
+                    this.notificationService.error('Error', err.message);
                 }
             );
     }

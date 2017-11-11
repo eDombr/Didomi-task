@@ -23,7 +23,7 @@ export class ExtendedHttpService extends Http {
         const consent = JSON.parse(body);
 
         if (!consent) {
-            return Observable.throw({ messge: 'Error' });
+            return Observable.throw({ message: 'Server Error' });
         }
 
         const jsonData = JSON.stringify(consent);

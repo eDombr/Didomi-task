@@ -20,7 +20,6 @@ const modules: Array<any> = [
     MatPaginatorModule
 ];
 
-
 @NgModule({
     imports: [
         ...modules
