@@ -16,7 +16,7 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDestroy {
     public dataSource: MatTableDataSource<Consent>;
-    public displayedColumns = ['name', 'email', 'checks'];
+    public displayedColumns: string[] = ['name', 'email', 'checks'];
 
     private subscriptions: Subscription[] = [];
     @select(['consent', 'consents']) consents$: Observable<Consent[]>;
@@ -43,8 +43,8 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
         }
     }
 
-    public filterChecks(checks) {
-        const namesOfChecks = [];
+    public filterChecks(checks): string[] {
+        const namesOfChecks: string[] = [];
         _.forEach(checks, (value, key) => {
             if (value) {
                 namesOfChecks.push(consentChecks.get(key));

@@ -61,7 +61,7 @@ describe('GiveConsentComponent', () => {
         const spyNotificationSucces = spyOn(notificationService, 'success');
 
         component.consentForm.setValue(formData);
-        component.submitConsentForm();
+        component.onSubmit();
         tick();
         fixture.detectChanges();
         expect(spyGiveConsent).toHaveBeenCalled();
@@ -72,7 +72,7 @@ describe('GiveConsentComponent', () => {
         const spyGiveConsent = spyOn(consentService, 'giveConsent').and.returnValue(Observable.throw({message: 'Server Error'}));
         const spyNotificationError = spyOn(notificationService, 'error');
 
-        component.submitConsentForm();
+        component.onSubmit();
         tick();
         fixture.detectChanges();
         expect(spyGiveConsent).toHaveBeenCalled();

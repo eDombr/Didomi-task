@@ -24,7 +24,7 @@ export class GiveConsentComponent implements OnInit {
         this.initConsentForm();
     }
 
-    public initConsentForm() {
+    public initConsentForm(): void {
         this.consentForm = this.fb.group({
             'name': ['', Validators.required],
             'email': ['', [ Validators.required,
@@ -37,7 +37,7 @@ export class GiveConsentComponent implements OnInit {
         });
     }
 
-    public submitConsentForm() {
+    public onSubmit(): void {
         const consent = this.consentForm.value;
         this.consentService.giveConsent(consent)
             .subscribe(
