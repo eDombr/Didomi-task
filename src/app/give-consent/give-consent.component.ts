@@ -1,3 +1,4 @@
+import { ConsentActions } from './../redux/actions/consent.action';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
@@ -41,10 +42,8 @@ export class GiveConsentComponent implements OnInit {
         this.consentService.giveConsent(consent)
             .subscribe(
                 data => {
-                    if (Array.isArray(data)) {
-                        this.notificationService.success('Succes', 'Consent has been added');
-                        this.consentForm.reset();
-                    }
+                    this.notificationService.success('Succes', 'Consent has been added');
+                    ConsentActions.addConsents(data);
                 },
                 err => {
                     const errorMessageFromApi = err ? err.json().message : 'Server error';

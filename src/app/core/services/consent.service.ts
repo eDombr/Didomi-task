@@ -15,7 +15,7 @@ export class ConsentService {
             .map((response: Response) => response.json());
     }
 
-    public giveConsent(consent: Consent): Observable<Consent[]> {
+    public giveConsent(consent: Consent): Observable<Consent> {
         const body = JSON.stringify(consent);
         return this.http.post(`${this.apiUrl}/consent`, body)
             .map((response: Response) => response.json());

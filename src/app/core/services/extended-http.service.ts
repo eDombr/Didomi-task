@@ -26,13 +26,8 @@ export class ExtendedHttpService extends Http {
             return Observable.throw({ messge: 'Error' });
         }
 
-        if (Array.isArray(consent)) {
-            this.consents = [...this.consents, ...(<Consent[]>consent)];
-        } else {
-            this.consents = [...this.consents, <Consent>consent];
-        }
-
-        return this.get('');
+        const jsonData = JSON.stringify(consent);
+        return Observable.of(<any>new CustomResponse(jsonData));
     }
 
 }
