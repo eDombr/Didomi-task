@@ -1,9 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { NotificationsService } from 'angular2-notifications';
 import * as _ from 'lodash';
 
-import { ConsentService } from '../core/services/consent.service';
 import { Consent } from './../shared/interfaces/consent.interface';
 import { consentChecks } from './../shared/config/app.conf';
 import { select } from '@angular-redux/store';
@@ -25,24 +23,24 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    constructor(private consentService: ConsentService,
-                private notificationService: NotificationsService) { }
+    constructor() { }
 
     public ngOnInit(): void {
         const sub: Subscription = this.consents$.subscribe(
             consents => {
+                if (!(_.isArray(consents) && consents.length > 0)) {
+                    return;
+                }
                 this.dataSource = new MatTableDataSource<Consent>(consents);
-            },
-            err => {
-                const errorMessage = err ? err.json().message : 'Server error';
-                this.notificationService.error('Error', errorMessage);
             }
         );
         this.subscriptions.push(sub);
     }
 
     public ngAfterViewInit(): void {
-        this.dataSource.paginator = this.paginator;
+        if (this.dataSource) {
+            this.dataSource.paginator = this.paginator;
+        }
     }
 
     public filterChecks(checks) {

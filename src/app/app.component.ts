@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgRedux, DevToolsExtension  } from '@angular-redux/store';
+import { NotificationsService } from 'angular2-notifications';
 
 import { notificationOptions } from './shared/config/app.conf';
 import { StoreReducer, INITIAL_STATE, IStore } from './redux/app.store';
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
 
     constructor(private ngRedux: NgRedux<IStore>,
                 private devTools: DevToolsExtension,
-                private consentService: ConsentService) {
+                private consentService: ConsentService,
+                private notificationService: NotificationsService) {
         let enhancers = [];
 
         if (devTools.isEnabled()) {
@@ -31,6 +33,10 @@ export class AppComponent implements OnInit {
             .subscribe(
                 consents => {
                     ConsentActions.addConsents(...consents);
+                },
+                err => {
+                    const errorMessage = err ? err.json().message : 'Server error';
+                    this.notificationService.error('Error', errorMessage);
                 }
             );
     }

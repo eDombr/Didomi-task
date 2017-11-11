@@ -6,8 +6,6 @@ import { Action } from '../../shared/interfaces/action.interface';
 import { Consent } from '../../shared/interfaces/consent.interface';
 
 export class ConsentActions extends BaseAction {
-    static readonly CLASS_NAME = 'ConsentActions:';
-
     static readonly ADD_CONSENTS = ConsentActions.getActType('ADD_CONSENTS');
 
     @dispatch()
