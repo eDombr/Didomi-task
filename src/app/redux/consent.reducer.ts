@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import { Consent } from './../shared/interfaces/consent.interface';
 import { Action } from '../shared/interfaces/action.interface';
 import { ConsentActions } from './actions/consent.action';
-import { ReduxUtil } from './redux.util';
 
 export interface IConsent {
     consents: Consent[];
@@ -17,7 +16,10 @@ export const INITIAL_STATE: IConsent = {
 export const ConsentReducer: Reducer<IConsent> = (state = INITIAL_STATE, action: Action): IConsent => {
     switch (action.type) {
         case ConsentActions.ADD_CONSENTS: {
-            const consents: Consent[] = ReduxUtil.addData(action.payload.consents, state.consents);
+            if (!_.isArray(action.payload.consents)) {
+                return state;
+            }
+            const consents: Consent[] = [...state.consents, ...action.payload.consents];
             return _.assign({}, state, { consents });
         }
     }
