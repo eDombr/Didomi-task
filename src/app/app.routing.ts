@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GiveConsentComponent } from './give-consent/give-consent.component';
-import { CollectedConsentsComponent } from './collected-consents/collected-consents.component';
+import { GiveConsentComponent } from './consents/give-consent/give-consent.component';
+import { CollectedConsentsComponent } from './consents/collected-consents/collected-consents.component';
 
 export const AppRoutes: Routes = [
     { path: '', redirectTo: 'give-consent', pathMatch: 'full' },

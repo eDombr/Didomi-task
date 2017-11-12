@@ -13,8 +13,7 @@ import { ExtendedHttpService } from './services/extended-http.service';
         ConsentService,
         ExtendedHttpService,
         { provide: Http, useClass: ExtendedHttpService }
-    ],
-    declarations: []
+    ]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

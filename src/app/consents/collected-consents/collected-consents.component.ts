@@ -5,8 +5,11 @@ import { Observable } from 'rxjs/Observable';
 import { select } from '@angular-redux/store';
 import * as _ from 'lodash';
 
-import { Consent } from './../shared/interfaces/consent.interface';
-import { consentProcesses } from './../shared/config/app.conf';
+/* Constans */
+import { consentProcesses } from './../../shared/config/app.conf';
+
+/* Interfaces */
+import { Consent, ConsentProcesses } from './../../shared/interfaces/consent.interface';
 
 @Component({
     selector: 'didomi-collected-consents',
@@ -30,6 +33,7 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
                 if (!(_.isArray(consents) && consents.length > 0)) {
                     return;
                 }
+                // Intialization data for  mat-table
                 this.dataSource = new MatTableDataSource<Consent>(consents);
             }
         );
@@ -38,11 +42,19 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
 
     public ngAfterViewInit(): void {
         if (this.dataSource) {
+            // associating the paginator with our data
             this.dataSource.paginator = this.paginator;
         }
     }
 
-    public filterProcesses(processes): string[] {
+    /**
+     * filterProcesses - filters names of selected processes and push them in an array
+     *
+     * @public
+     * @param {ConsentProcesses} processes - selected processes of specific consent
+     * @return {string[]} - array of processes names
+     */
+    public filterProcesses(processes: ConsentProcesses): string[] {
         const namesOfProcesses: string[] = [];
         _.forEach(processes, (value, key) => {
             if (value) {
@@ -57,5 +69,4 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
             sub.unsubscribe();
         });
     }
-
 }

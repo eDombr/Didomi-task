@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+/* Interfaces */
 import { Consent } from './../../shared/interfaces/consent.interface';
+
+/* Mock data */
 import { consents } from './../consents.mock';
 
 @Injectable()

@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
                 private notificationService: NotificationsService) {
         let enhancers = [];
 
+        /* configuration ngRedux and devtools */
         if (devTools.isEnabled()) {
             enhancers = [ ...enhancers, devTools.enhancer() ];
         }
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
         this.consentService.getConsents()
             .subscribe(
                 consents => {
+                    /* Adding consent to redux store */
                     ConsentActions.addConsents(...consents);
                 },
                 err => {

@@ -1,9 +1,12 @@
 import { Reducer } from 'redux';
 import * as _ from 'lodash';
 
+/* Actions */
+import { ConsentActions } from './actions/consent.action';
+
+/* Interfaces */
 import { Consent } from './../shared/interfaces/consent.interface';
 import { Action } from '../shared/interfaces/action.interface';
-import { ConsentActions } from './actions/consent.action';
 
 export interface IConsent {
     consents: Consent[];

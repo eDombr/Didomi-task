@@ -3,9 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 import * as _ from 'lodash';
 
-import { ConsentActions } from './../redux/actions/consent.action';
-import { ConsentService } from '../core/services/consent.service';
-import { validationEmailPattern } from '../shared/config/app.conf';
+/* Actions */
+import { ConsentActions } from './../../redux/actions/consent.action';
+
+/* Services */
+import { ConsentService } from '../../core/services/consent.service';
+
+/* Constants */
+import { validationEmailPattern } from '../../shared/config/app.conf';
 
 @Component({
     selector: 'didomi-give-consent',
@@ -24,6 +29,9 @@ export class GiveConsentComponent implements OnInit {
         this.initConsentForm();
     }
 
+    /**
+     * initConsentForm - intialization consent form
+     */
     public initConsentForm(): void {
         this.consentForm = this.fb.group({
             'name': ['', Validators.required],
@@ -38,12 +46,13 @@ export class GiveConsentComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        const consent = this.consentForm.value;
-        this.consentService.giveConsent(consent)
+        const newConsent = this.consentForm.value;
+        this.consentService.giveConsent(newConsent)
             .subscribe(
-                data => {
+                consent => {
                     this.notificationService.success('Succes', 'Consent has been added');
-                    ConsentActions.addConsents(data);
+                    // adding created consent to redux store
+                    ConsentActions.addConsents(consent);
                     this.consentForm.reset();
                 },
                 err => {
@@ -52,6 +61,13 @@ export class GiveConsentComponent implements OnInit {
             );
     }
 
+    /**
+     * processesValidator - validator for processors form group. If all checkboxes are unchecked the form will be invalid.
+     * If at least one is checked the form will be valid
+     *
+     * @public
+     * @param {FormGroup} controlGroup - form group with checkboxes
+     */
     public processesValidator(controlGroup: FormGroup): { [key: string]: any } {
         const controlIsChecked = _.some(controlGroup.controls, { value: true });
         return controlIsChecked ? null : { 'unchecked': true };

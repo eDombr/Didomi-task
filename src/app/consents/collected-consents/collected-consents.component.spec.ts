@@ -1,21 +1,27 @@
-import { Observable } from 'rxjs/Observable';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatTableDataSource } from '@angular/material';
+import { NotificationsService } from 'angular2-notifications';
+import { Observable } from 'rxjs/Observable';
 
-import { Consent } from '../shared/interfaces/consent.interface';
-import { SharedModule } from './../shared/shared.module';
+/* Modules */
+import { SharedModule } from './../../shared/shared.module';
 
+/* Interfaces */
+import { Consent } from '../../shared/interfaces/consent.interface';
+
+/* Components */
 import { CollectedConsentsComponent } from './collected-consents.component';
 
-import { ConsentService } from '../core/services/consent.service';
-import { NotificationsService } from 'angular2-notifications';
+/* Services */
+import { ConsentService } from '../../core/services/consent.service';
 
-import { ConsentMockService } from '../testing/services/consent.mock.service';
-import { NotificationMockService } from '../testing/services/notification.mock.service';
-import { MatTableDataSource } from '@angular/material';
+/* Mocks and stubs */
+import { ConsentMockService } from '../../testing/services/consent.mock.service';
+import { NotificationMockService } from '../../testing/services/notification.mock.service';
 
 function setMockNgRedux<T>(fixture: ComponentFixture<T>, consents: Consent[]): void {
     const appLoader = MockNgRedux.getSelectorStub(['consent', 'consents']);

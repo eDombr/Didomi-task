@@ -1,16 +1,25 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './../shared/shared.module';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 
-import { GiveConsentComponent } from './give-consent.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ConsentService } from '../core/services/consent.service';
+/* Modules */
+import { SharedModule } from './../../shared/shared.module';
 
-import { ConsentMockService } from '../testing/services/consent.mock.service';
-import { NotificationMockService } from '../testing/services/notification.mock.service';
+/* Interfaces */
+import { Consent } from '../../shared/interfaces/consent.interface';
+
+/* Componens */
+import { GiveConsentComponent } from './give-consent.component';
+
+/* Services */
+import { ConsentService } from '../../core/services/consent.service';
+
+/* Mocks and stubs */
+import { ConsentMockService } from '../../testing/services/consent.mock.service';
+import { NotificationMockService } from '../../testing/services/notification.mock.service';
 
 describe('GiveConsentComponent', () => {
     let component: GiveConsentComponent;
@@ -47,7 +56,7 @@ describe('GiveConsentComponent', () => {
     });
 
     it('should call giveConsent method and notification', fakeAsync(() => {
-        const formData = {
+        const formData: Consent = {
             name: 'john',
             email: 'john@gmail.com',
             processes: {
@@ -80,7 +89,7 @@ describe('GiveConsentComponent', () => {
     }));
 
     it('should disable submit button', () => {
-        const formData = {
+        const formData: Consent = {
             name: 'john',
             email: 'john@gmail.com',
             processes: {
@@ -98,7 +107,7 @@ describe('GiveConsentComponent', () => {
     });
 
     it('should enable submit button', () => {
-        const formData = {
+        const formData: Consent = {
             name: 'john',
             email: 'john@gmail.com',
             processes: {
