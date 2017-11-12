@@ -94,7 +94,7 @@ describe('GiveConsentComponent', () => {
         fixture.detectChanges();
 
         const btn = fixture.debugElement.query(By.css('.give-consent-btn'));
-        expect(btn.properties.disabled).toBeTruthy('disabel property should be true');
+        expect(btn.properties.disabled).toBeTruthy('disabled property should be true');
     });
 
     it('should enable submit button', () => {
@@ -112,7 +112,7 @@ describe('GiveConsentComponent', () => {
         fixture.detectChanges();
 
         const btn = fixture.debugElement.query(By.css('.give-consent-btn'));
-        expect(btn.properties.disabled).toBeFalsy('disabel property should be false');
+        expect(btn.properties.disabled).toBeFalsy('disabled property should be false');
     });
 });
 
