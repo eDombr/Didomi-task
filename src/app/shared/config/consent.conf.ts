@@ -1,6 +1,6 @@
-export const consentChecks = new Map<string, string>([
-    ['firstCheck', 'Receive newsletter'],
-    ['secondCheck', 'Be shown targeted ads'],
-    ['thirdCheck', 'Contribute to anonymus visit statistics']
+export const consentProcesses = new Map<string, string>([
+    ['firstProcess', 'Receive newsletter'],
+    ['secondProcess', 'Be shown targeted ads'],
+    ['thirdProcess', 'Contribute to anonymus visit statistics']
 ]);
 

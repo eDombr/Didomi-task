@@ -3,7 +3,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import * as _ from 'lodash';
 
 import { Consent } from './../shared/interfaces/consent.interface';
-import { consentChecks } from './../shared/config/app.conf';
+import { consentProcesses } from './../shared/config/app.conf';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,7 +16,7 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDestroy {
     public dataSource: MatTableDataSource<Consent>;
-    public displayedColumns: string[] = ['name', 'email', 'checks'];
+    public displayedColumns: string[] = ['name', 'email', 'processes'];
 
     private subscriptions: Subscription[] = [];
     @select(['consent', 'consents']) consents$: Observable<Consent[]>;
@@ -43,14 +43,14 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
         }
     }
 
-    public filterChecks(checks): string[] {
-        const namesOfChecks: string[] = [];
-        _.forEach(checks, (value, key) => {
+    public filterProcesses(processes): string[] {
+        const namesOfProcesses: string[] = [];
+        _.forEach(processes, (value, key) => {
             if (value) {
-                namesOfChecks.push(consentChecks.get(key));
+                namesOfProcesses.push(consentProcesses.get(key));
             }
         });
-        return namesOfChecks;
+        return namesOfProcesses;
     }
 
     public ngOnDestroy(): void {

@@ -29,11 +29,11 @@ export class GiveConsentComponent implements OnInit {
             'name': ['', Validators.required],
             'email': ['', [ Validators.required,
                             Validators.pattern(this.validationEmailPattern)]],
-            'checks': this.fb.group({
-                'firstCheck': false,
-                'secondCheck': false,
-                'thirdCheck': false
-            }, { validator: this.checkboxValidator })
+            'processes': this.fb.group({
+                'firstProcess': false,
+                'secondProcess': false,
+                'thirdProcess': false
+            }, { validator: this.processesValidator })
         });
     }
 
@@ -52,7 +52,7 @@ export class GiveConsentComponent implements OnInit {
             );
     }
 
-    public checkboxValidator(controlGroup: FormGroup): { [key: string]: any } {
+    public processesValidator(controlGroup: FormGroup): { [key: string]: any } {
         const controlIsChecked = _.some(controlGroup.controls, { value: true });
         return controlIsChecked ? null : { 'unchecked': true };
     }

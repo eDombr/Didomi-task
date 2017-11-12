@@ -11,10 +11,10 @@
             <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="checks">
+        <ng-container matColumnDef="processes">
             <mat-header-cell *matHeaderCellDef> Consent given for </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                {{filterChecks(element.checks)}}
+                {{filterProcesses(element.processes)}}
             </mat-cell>
         </ng-container>
 

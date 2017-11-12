@@ -50,10 +50,10 @@ describe('GiveConsentComponent', () => {
         const formData = {
             name: 'john',
             email: 'john@gmail.com',
-            checks: {
-                firstCheck: false,
-                secondCheck: true,
-                thirdCheck: false
+            processes: {
+                firstProcess: false,
+                secondProcess: true,
+                thirdProcess: false
             }
         };
 
@@ -83,10 +83,10 @@ describe('GiveConsentComponent', () => {
         const formData = {
             name: 'john',
             email: 'john@gmail.com',
-            checks: {
-                firstCheck: false,
-                secondCheck: false,
-                thirdCheck: false
+            processes: {
+                firstProcess: false,
+                secondProcess: false,
+                thirdProcess: false
             }
         };
 
@@ -101,10 +101,10 @@ describe('GiveConsentComponent', () => {
         const formData = {
             name: 'john',
             email: 'john@gmail.com',
-            checks: {
-                firstCheck: false,
-                secondCheck: true,
-                thirdCheck: false
+            processes: {
+                firstProcess: false,
+                secondProcess: true,
+                thirdProcess: false
             }
         };
 

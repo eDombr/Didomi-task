@@ -1,11 +1,11 @@
 export interface Consent {
     name: string;
     email: string;
-    checks: ConsentChecks;
+    processes: ConsentProcesses;
 }
 
-export interface ConsentChecks {
-    firstCheck: boolean;
-    secondCheck: boolean;
-    thirdCheck: boolean;
+export interface ConsentProcesses {
+    firstProcess: boolean;
+    secondProcess: boolean;
+    thirdProcess: boolean;
 }

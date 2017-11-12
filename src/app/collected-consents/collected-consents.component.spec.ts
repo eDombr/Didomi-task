@@ -27,10 +27,10 @@ describe('CollectedConsentsComponent', () => {
     let component: CollectedConsentsComponent;
     let fixture: ComponentFixture<CollectedConsentsComponent>;
     const consents: Consent[] = [
-        { name: 'John', email: 'john@gmail.com', checks: { firstCheck: true, secondCheck: false, thirdCheck: true } },
-        { name: 'Johanes', email: 'Johanes@gmail.com', checks: { firstCheck: true, secondCheck: true, thirdCheck: true } },
-        { name: 'Emili', email: 'Emili@gmail.com', checks: { firstCheck: false, secondCheck: false, thirdCheck: true } },
-        { name: 'Blala', email: 'Blala@gmail.com', checks: { firstCheck: true, secondCheck: false, thirdCheck: true } }
+        { name: 'John', email: 'john@gmail.com', processes: { firstProcess: true, secondProcess: false, thirdProcess: true } },
+        { name: 'Johanes', email: 'Johanes@gmail.com', processes: { firstProcess: true, secondProcess: true, thirdProcess: true } },
+        { name: 'Emili', email: 'Emili@gmail.com', processes: { firstProcess: false, secondProcess: false, thirdProcess: true } },
+        { name: 'Blala', email: 'Blala@gmail.com', processes: { firstProcess: true, secondProcess: false, thirdProcess: true } }
     ];
 
     beforeEach(async(() => {
@@ -85,16 +85,16 @@ describe('CollectedConsentsComponent', () => {
         expect(component.paginator).toBeUndefined('paginator should not be crated');
     });
 
-    it('should filter checks', () => {
+    it('should filter processes', () => {
         setMockNgRedux(fixture, consents);
         fixture.detectChanges();
 
-        const consent: Consent = { name: 'John', email: 'john@gmail.com', checks: { firstCheck: true, secondCheck: false, thirdCheck: true } };
-        const checks: string[] = ['Receive newsletter', 'Contribute to anonymus visit statistics'];
+        const consent: Consent = { name: 'John', email: 'john@gmail.com', processes: { firstProcess: true, secondProcess: false, thirdProcess: true } };
+        const processes: string[] = ['Receive newsletter', 'Contribute to anonymus visit statistics'];
 
-        const filteredChecks: string[] = component.filterChecks(consent.checks);
+        const filteredProcesses: string[] = component.filterProcesses(consent.processes);
 
-        expect(checks).toEqual(filteredChecks);
+        expect(processes).toEqual(filteredProcesses);
     });
 
 });
