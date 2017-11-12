@@ -1,13 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { select } from '@angular-redux/store';
 import * as _ from 'lodash';
 
 import { Consent } from './../shared/interfaces/consent.interface';
 import { consentProcesses } from './../shared/config/app.conf';
-import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'didomi-collected-consents',
@@ -19,9 +18,9 @@ export class CollectedConsentsComponent implements OnInit, AfterViewInit, OnDest
     public displayedColumns: string[] = ['name', 'email', 'processes'];
 
     private subscriptions: Subscription[] = [];
-    @select(['consent', 'consents']) consents$: Observable<Consent[]>;
+    @select(['consent', 'consents']) private consents$: Observable<Consent[]>;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator) public paginator: MatPaginator;
 
     constructor() { }
 

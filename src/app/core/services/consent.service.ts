@@ -6,7 +6,7 @@ import { Consent } from '../../shared/interfaces/consent.interface';
 
 @Injectable()
 export class ConsentService {
-    private apiUrl = 'http://didomi/';
+    private apiUrl: string = `http://didomi/`;
 
     constructor(private http: Http) { }
 

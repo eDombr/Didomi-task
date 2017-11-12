@@ -37,7 +37,7 @@ class CustomResponse extends Response {
         super({body: '', status: 200, headers: null, url: '', merge: null});
     }
 
-    json() {
+    public json(): any {
         return JSON.parse(this.data);
     }
 }

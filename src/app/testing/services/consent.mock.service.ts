@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+
 import { Consent } from '../../shared/interfaces/consent.interface';
 
 @Injectable()

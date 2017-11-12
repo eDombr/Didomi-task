@@ -1,9 +1,9 @@
-import { ConsentActions } from './../redux/actions/consent.action';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
-
 import * as _ from 'lodash';
+
+import { ConsentActions } from './../redux/actions/consent.action';
 import { ConsentService } from '../core/services/consent.service';
 import { validationEmailPattern } from '../shared/config/app.conf';
 
