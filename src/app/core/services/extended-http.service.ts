@@ -32,7 +32,6 @@ export class ExtendedHttpService extends Http {
         const jsonData = JSON.stringify(consent);
         return Observable.of(<any>new CustomResponse(jsonData));
     }
-
 }
 
 class CustomResponse extends Response {

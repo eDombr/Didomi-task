@@ -3,13 +3,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { Observable } from 'rxjs/Observable';
 
+/* Components */
 import { AppComponent } from './app.component';
+
+/* Services */
 import { ConsentService } from './core/services/consent.service';
 import { NotificationsService } from 'angular2-notifications';
+
+/* Interfaces */
 import { Consent } from './shared/interfaces/consent.interface';
 
-import { SidebarMockComponent } from './testing/components/sidebar.mock.component';
-import { SimpleNotificationsMockComponent } from './testing/components/simple-notification.mock.component';
+/* Mocks and stubs */
+import { SidebarStubComponent } from './testing/components/sidebar.stub.component';
+import { SimpleNotificationsStubComponent } from './testing/components/simple-notification.stub.component';
 import { ConsentMockService } from './testing/services/consent.mock.service';
 import { NotificationMockService } from './testing/services/notification.mock.service';
 
@@ -29,8 +35,8 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                SidebarMockComponent,
-                SimpleNotificationsMockComponent
+                SidebarStubComponent,
+                SimpleNotificationsStubComponent
             ],
             imports: [
                 RouterTestingModule,

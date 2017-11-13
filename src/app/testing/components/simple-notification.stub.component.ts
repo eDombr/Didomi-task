@@ -4,6 +4,6 @@ import { Component, Input } from '@angular/core';
     selector: 'simple-notifications', // tslint:disable-line
     template: ''
 })
-export class SimpleNotificationsMockComponent {
+export class SimpleNotificationsStubComponent {
     @Input('options') options: any;
 }

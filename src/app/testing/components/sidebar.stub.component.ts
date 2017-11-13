@@ -4,5 +4,5 @@ import { Component } from '@angular/core';
   selector: 'didomi-sidebar',
   template: ''
 })
-export class SidebarMockComponent {
+export class SidebarStubComponent {
 }
