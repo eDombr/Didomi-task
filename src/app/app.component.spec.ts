@@ -56,17 +56,16 @@ describe('AppComponent', () => {
         notificationService = fixture.debugElement.injector.get(NotificationsService);
     });
 
-    it('should create the app', async(() => {
+    it('should create the app', () => {
         fixture.detectChanges();
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
-    }));
+    });
 
-    it('should call getConsents method', fakeAsync(() => {
+    it('should call getConsents method', () => {
         const spyGetConsents = spyOn(consentService, 'getConsents').and.returnValue(Observable.of(consents));
 
-        tick();
         fixture.detectChanges();
         expect(spyGetConsents).toHaveBeenCalled();
-    }));
+    });
 });

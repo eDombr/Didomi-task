@@ -59,7 +59,6 @@ describe('CollectedConsentsComponent', () => {
     });
 
     it('should create', () => {
-        setMockNgRedux(fixture, consents);
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
