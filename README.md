@@ -1,6 +1,6 @@
 # DidomiTest
 
-##Installation
+## Installation
 Go to project's folder and run `npm install` for installation of dependencies
 
 ## Development server
