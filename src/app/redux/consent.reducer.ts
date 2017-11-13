@@ -8,15 +8,15 @@ import { ConsentActions } from './actions/consent.action';
 import { Consent } from './../shared/interfaces/consent.interface';
 import { Action } from '../shared/interfaces/action.interface';
 
-export interface IConsent {
+export interface ConsentState {
     consents: Consent[];
 }
 
-export const INITIAL_STATE: IConsent = {
+export const INITIAL_STATE: ConsentState = {
     consents: []
 };
 
-export const ConsentReducer: Reducer<IConsent> = (state = INITIAL_STATE, action: Action): IConsent => {
+export const ConsentReducer: Reducer<ConsentState> = (state = INITIAL_STATE, action: Action): ConsentState => {
     switch (action.type) {
         case ConsentActions.ADD_CONSENTS: {
             if (!_.isArray(action.payload.consents)) {

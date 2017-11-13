@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgRedux, DevToolsExtension  } from '@angular-redux/store';
 import { NotificationsService } from 'angular2-notifications';
 
-import { notificationOptions } from './shared/config/app.conf';
-import { StoreReducer, INITIAL_STATE, IStore } from './redux/app.store';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { ConsentService } from './core/services/consent.service';
+/* Redux */
+import { StoreReducer, INITIAL_STATE, Store } from './redux/app.store';
 import { ConsentActions } from './redux/actions/consent.action';
+
+/* Services */
+import { ConsentService } from './core/services/consent.service';
+
+/* Constants */
+import { notificationOptions } from './shared/config/app.conf';
 
 @Component({
     selector: 'didomi-root',
@@ -16,7 +20,7 @@ import { ConsentActions } from './redux/actions/consent.action';
 export class AppComponent implements OnInit {
     public options = notificationOptions;
 
-    constructor(private ngRedux: NgRedux<IStore>,
+    constructor(private ngRedux: NgRedux<Store>,
                 private devTools: DevToolsExtension,
                 private consentService: ConsentService,
                 private notificationService: NotificationsService) {

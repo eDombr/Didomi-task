@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 
-import { IConsent, ConsentReducer, INITIAL_STATE as INITIAL_STATE_CONSENT } from './consent.reducer';
+import { ConsentState, ConsentReducer, INITIAL_STATE as INITIAL_STATE_CONSENT } from './consent.reducer';
 
 /* Store Interface */
-export interface IStore {
-    consent: IConsent;
+export interface Store {
+    consent: ConsentState;
 }
 
 /* Store Initial State */
-export const INITIAL_STATE: IStore = {
+export const INITIAL_STATE: Store = {
     consent: INITIAL_STATE_CONSENT
 };
 
 /* Combine State Reducers */
-export const StoreReducer = combineReducers<IStore>({
+export const StoreReducer = combineReducers<Store>({
     consent: ConsentReducer
 });
